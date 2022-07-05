@@ -34,7 +34,7 @@ function SignUp() {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password)
             const user = userCredential.user
 
-            updateProfile(auth.user, {
+            updateProfile(auth.currentUser, {
                 displayName: name
                 })
 
