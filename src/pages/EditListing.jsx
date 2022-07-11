@@ -13,6 +13,7 @@ function EditListing() {
   const [loading, setLoading] = useState(false);
   const [listing, setListing] = useState(null);
 
+    // eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [formData, setFormData] = useState({
     type: "rent",
