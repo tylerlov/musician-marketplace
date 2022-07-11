@@ -23,7 +23,7 @@ function SignIn() {
             //Allows us to dynamically change the name of the input - e.g. email, password
             [e.target.id]: e.target.value
         }))
-        }
+    }
     
     const onSubmit = async (e) => {
         e.preventDefault()
