@@ -82,7 +82,7 @@ return (
     <div className="category">
         <header>
             <p className="pageHeader">
-               Offers
+               Discounted Listings
             </p>
         </header>
 
