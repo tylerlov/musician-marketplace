@@ -98,7 +98,7 @@ function Listing() {
         </p>
         <p className="listingLocation">{listing.location}</p>
         <p className="listingType">
-          For {listing.type === "rent" ? "Rent" : "Sale"}
+          Instrument Type: {listing.instrumentType}
         </p>
         {listing.offer && (
           <p className="discountPrice">
@@ -106,18 +106,10 @@ function Listing() {
           </p>
         )}
         <ul className="listingDetailsList">
-          <li>
-            {listing.bedrooms > 1
-              ? `${listing.bedrooms} Bedrooms`
-              : `${listing.bedrooms} Bedroom`}
-          </li>
-          <li>
-            {listing.bathrooms > 1
-              ? `${listing.bathrooms} Bathrooms`
-              : `${listing.bathrooms} Bathroom`}
-          </li>
-          <li>{listing.parking ? `Parking Spot` : `No Parking`}</li>
-          <li>{listing.furnished ? `Furnished` : `Not Furnished`}</li>
+          <li>Brand: {listing.brand}</li>
+          <li>Model: {listing.model}</li>
+          <li>{listing.isNew ? `New` : `Used`}</li>
+          <li>Color: {listing.color}</li>
         </ul>
 
         <p className="listingLocationTitle">Location</p>
@@ -146,7 +138,7 @@ function Listing() {
             to={`/contact/${listing.userRef}?listingName=${listing.name}`}
             className="primaryButton"
           >
-            Contact Landlord
+            Contact Seller
           </Link>
         )}
       </div>

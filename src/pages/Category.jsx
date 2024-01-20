@@ -85,7 +85,7 @@ return (
     <div className="category">
         <header>
             <p className="pageHeader">
-                {params.categoryName === 'rent' ? 'Places for rent' : 'Places for sale'}
+                {params.categoryName === 'rent' ? 'Equipment' : 'Instruments'}
             </p>
         </header>
 

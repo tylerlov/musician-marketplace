@@ -136,7 +136,7 @@ function Profile() {
 
         <Link to='/createlisting' className='createListing'>
             <HomeIcon alt='home' className='createListingIcon'/>
-            <p>Sell or rent your home</p>
+            <p>Sell or rent your instrument</p>
             <ArrowRightIcon alt='arrowRight' className='arrowRight'/>
         </Link>
 

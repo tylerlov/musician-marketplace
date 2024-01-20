@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc, getDoc, addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { doc, updateDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 import {v4 as uuidv4} from 'uuid';
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,13 +16,13 @@ function EditListing() {
     // eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [formData, setFormData] = useState({
-    type: "rent",
+    instrumentType: "",
     name: "",
-    bedrooms: 1,
-    bathrooms: 1,
-    parking: false,
-    furnished: false,
-    address: "",
+    brand: "",
+    model: "",
+    isNew: false,
+    color: "",
+    location: "",
     offer: false,
     regularPrice: 0,
     discountedPrice: 0,
@@ -32,13 +32,13 @@ function EditListing() {
   });
 
   const {
-    type,
+    instrumentType,
     name,
-    bedrooms,
-    bathrooms,
-    parking,
-    furnished,
-    address,
+    brand,
+    model,
+    isNew,
+    color,
+    location,
     offer,
     regularPrice,
     discountedPrice,
@@ -69,7 +69,7 @@ function EditListing() {
 
     if (geolocationEnabled) {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
       )
 
       const data = await response.json()
@@ -147,18 +147,18 @@ function EditListing() {
         timestamp: serverTimestamp(),
       }
 
-      formDataCopy.location = address
+      formDataCopy.location = location
       delete formDataCopy.images
-      delete formDataCopy.address
+      delete formDataCopy.location
       !formDataCopy.offer && delete formDataCopy.discountedPrice
 
-      //update listing - `${listing.id}` doesnt work but the bewlow works - why?
+      //update listing
       const docRef = doc(db, 'listings', params.listingId)
         await updateDoc(docRef, formDataCopy)
 
       setLoading(false)
       toast.success('Listing saved')
-      navigate(`/category/${formDataCopy.type}/${docRef.id}`)
+      navigate(`/category/${formDataCopy.instrumentType}/${docRef.id}`)
     }
   
 
@@ -208,7 +208,7 @@ useEffect(() => {
         const docSnap = await getDoc(docRef)
         if(docSnap.exists()){
             setListing(docSnap.data())
-            setFormData({...docSnap.data(), address: docSnap.data().location})
+            setFormData({...docSnap.data(), location: docSnap.data().location})
             setLoading(false)
         } else {
             navigate('/')
@@ -244,29 +244,38 @@ useEffect(() => {
   return (
     <div className="profile">
       <header>
-        <p className="pageHeader">Edit Listing</p>
+        <p className="pageHeader">Edit Musicians Marketplace Listing</p>
       </header>
       <main>
         <form onSubmit={onSubmit}>
-          <label className="formLabel">Sell / Rent</label>
+          <label className="formLabel">Instrument Type</label>
           <div className="formButtons">
             <button
               type="button"
-              className={type === "sale" ? "formButtonActive" : "formButton"}
-              id="type"
-              value="sale"
+              className={instrumentType === "string" ? "formButtonActive" : "formButton"}
+              id="instrumentType"
+              value="string"
               onClick={onMutate}
             >
-              Sell
+              String
             </button>
             <button
               type="button"
-              className={type === "rent" ? "formButtonActive" : "formButton"}
-              id="type"
-              value="rent"
+              className={instrumentType === "wind" ? "formButtonActive" : "formButton"}
+              id="instrumentType"
+              value="wind"
               onClick={onMutate}
             >
-              Rent
+              Wind
+            </button>
+            <button
+              type="button"
+              className={instrumentType === "percussion" ? "formButtonActive" : "formButton"}
+              id="instrumentType"
+              value="percussion"
+              onClick={onMutate}
+            >
+              Percussion
             </button>
           </div>
           <label className="formLabel">Name</label>
@@ -283,65 +292,35 @@ useEffect(() => {
 
           <div className="formRooms flex">
             <div>
-              <label className="formLabel">Bedrooms</label>
+              <label className="formLabel">Brand</label>
               <input
                 className="formInputSmall"
-                type="number"
-                id="bedrooms"
-                value={bedrooms}
+                type="text"
+                id="brand"
+                value={brand}
                 onChange={onMutate}
-                min="1"
-                max="50"
                 required
               />
             </div>
             <div>
-              <label className="formLabel">Bathrooms</label>
+              <label className="formLabel">Model</label>
               <input
                 className="formInputSmall"
-                type="number"
-                id="bathrooms"
-                value={bathrooms}
+                type="text"
+                id="model"
+                value={model}
                 onChange={onMutate}
-                min="1"
-                max="50"
                 required
               />
             </div>
           </div>
 
-          <label className="formLabel">Parking spot</label>
+          <label className="formLabel">New</label>
           <div className="formButtons">
             <button
-              className={parking ? "formButtonActive" : "formButton"}
+              className={isNew ? "formButtonActive" : "formButton"}
               type="button"
-              id="parking"
-              value={true}
-              onClick={onMutate}
-              min="1"
-              max="50"
-            >
-              Yes
-            </button>
-            <button
-              className={
-                !parking && parking !== null ? "formButtonActive" : "formButton"
-              }
-              type="button"
-              id="parking"
-              value={false}
-              onClick={onMutate}
-            >
-              No
-            </button>
-          </div>
-
-          <label className="formLabel">Furnished</label>
-          <div className="formButtons">
-            <button
-              className={furnished ? "formButtonActive" : "formButton"}
-              type="button"
-              id="furnished"
+              id="isNew"
               value={true}
               onClick={onMutate}
             >
@@ -349,12 +328,10 @@ useEffect(() => {
             </button>
             <button
               className={
-                !furnished && furnished !== null
-                  ? "formButtonActive"
-                  : "formButton"
+                !isNew && isNew !== null ? "formButtonActive" : "formButton"
               }
               type="button"
-              id="furnished"
+              id="isNew"
               value={false}
               onClick={onMutate}
             >
@@ -362,12 +339,22 @@ useEffect(() => {
             </button>
           </div>
 
-          <label className="formLabel">Address</label>
+          <label className="formLabel">Color</label>
+          <input
+            className="formInputName"
+            type="text"
+            id="color"
+            value={color}
+            onChange={onMutate}
+            required
+          />
+
+          <label className="formLabel">Location</label>
           <textarea
             className="formInputAddress"
             type="text"
-            id="address"
-            value={address}
+            id="location"
+            value={location}
             onChange={onMutate}
             required
           />
@@ -435,7 +422,6 @@ useEffect(() => {
               max="750000000"
               required
             />
-            {type === "rent" && <p className="formPriceText">$ / Month</p>}
           </div>
 
           {offer && (
