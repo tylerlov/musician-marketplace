@@ -26,16 +26,16 @@ function Slider() {
       const q = query(listingsRef, orderBy("timestamp", "desc"), limit(5));
       const querySnap = await getDocs(q);
 
-      let listing = [];
+      let fetchedListings = []; // Corrected variable name
 
       querySnap.forEach((doc) => {
-        return listings.push({
+        fetchedListings.push({ // Push to the new array
           id: doc.id,
           data: doc.data(),
         });
       });
 
-      setListings(listings);
+      setListings(fetchedListings); // Update the state with the new array
       setLoading(false);
     };
 
@@ -58,7 +58,7 @@ function Slider() {
           style={{ height: "300px" }}
         >
          {listings.map(({ data, id }) => {
-           const imageUrl = data.imgUrls && data.imgUrls[0] ? data.imgUrls[0] : 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=1024x1024&w=is&k=20&c=Bs1RdueQnaAcO888WBIQsC6NvA7aVTzeRVzSd8sJfUg=';
+           const imageUrl = data.imageUrls && data.imageUrls[0] ? data.imageUrls[0] : 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=1024x1024&w=is&k=20&c=Bs1RdueQnaAcO888WBIQsC6NvA7aVTzeRVzSd8sJfUg=';
            return (
              <SwiperSlide
                key={id}

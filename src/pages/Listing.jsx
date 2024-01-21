@@ -47,7 +47,7 @@ function Listing() {
 
   return (
     <main>
-      {listing && listing.imgUrls && (
+      {listing && listing.imageUrls && (
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={1}
@@ -55,7 +55,7 @@ function Listing() {
           navigation
           style={{ height: "300px" }}
         >
-          {listing.imgUrls.map((url, index) => {
+          {listing.imageUrls.map((url, index) => {
             // Check if the image URL is valid or not
             const imageUrl = url || defaultImageUrl;
             return (

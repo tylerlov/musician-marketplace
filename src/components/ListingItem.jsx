@@ -8,7 +8,7 @@ import bathtubIcon from '../assets/svg/bathtubIcon.svg'
 //Listing item takes in a couple props, here we destructure them
 function ListingItem({ listing, id, onDelete, onEdit}) {
     const defaultImageUrl = 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=1024x1024&w=is&k=20&c=Bs1RdueQnaAcO888WBIQsC6NvA7aVTzeRVzSd8sJfUg='; // Placeholder image URL
-    const imageUrl = listing.imgUrls && listing.imgUrls[0] ? listing.imgUrls[0] : defaultImageUrl;
+    const imageUrl = listing.imageUrls && listing.imageUrls[0] ? listing.imageUrls[0] : defaultImageUrl;
 
     return (
       <li className="categoryListing">
