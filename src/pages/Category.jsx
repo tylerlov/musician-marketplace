@@ -21,7 +21,13 @@ function Category() {
                 const listingsRef = collection(db, 'listings')
 
                 //Create a query
-                const q = query(listingsRef, where('type', '==', params.categoryName), orderBy('timestamp', 'desc'), limit(10))
+                let q;
+                if (params.categoryName) {
+                    q = query(listingsRef, where('type', '==', params.categoryName), orderBy('timestamp', 'desc'), limit(10));
+                } else {
+                    // If categoryName is blank, we don't want to show any listings
+                    return;
+                }
 
                 //Execute query
                 const querySnap = await getDocs(q)
@@ -30,7 +36,7 @@ function Category() {
                 setLastFetchedListing(lastVisible)
 
                 const listings = []
-                //Loop through query results - particualr to firebase docs
+                //Loop through query results - particular to Firebase docs
                 querySnap.forEach((doc) => {
                     return listings.push({
                         id: doc.id,
@@ -42,11 +48,10 @@ function Category() {
                 setLoading(false)
 
             }catch(error){
-                toast.error('Error fetching listings')
+                toast.error('Could not fetch listings')
             }
         }
         fetchListings()
-    // Think about what this dependency array is for
     }, [params.categoryName])
 
     const onFetchMoreListings = async () => { 
@@ -55,7 +60,13 @@ function Category() {
             const listingsRef = collection(db, 'listings')
 
             //Create a query
-            const q = query(listingsRef, where('type', '==', params.categoryName), startAfter(lastFetchedListing), orderBy('timestamp', 'desc'), limit(10))
+            let q;
+            if (params.categoryName) {
+                q = query(listingsRef, where('type', '==', params.categoryName), startAfter(lastFetchedListing), orderBy('timestamp', 'desc'), limit(10));
+            } else {
+                // If categoryName is blank, we don't want to show any listings
+                return;
+            }
 
             //Execute query
             const querySnap = await getDocs(q)
@@ -64,7 +75,7 @@ function Category() {
             setLastFetchedListing(lastVisible)
 
             const listings = []
-            //Loop through query results - particualr to firebase docs
+            //Loop through query results - particular to Firebase docs
             querySnap.forEach((doc) => {
                 return listings.push({
                     id: doc.id,
@@ -85,7 +96,7 @@ return (
     <div className="category">
         <header>
             <p className="pageHeader">
-                {params.categoryName === 'rent' ? 'Equipment' : 'Instruments'}
+                {params.categoryName === 'equipment' ? 'Equipment' : 'Instruments'}
             </p>
         </header>
 

@@ -25,6 +25,8 @@ function Listing() {
   const params = useParams();
   const auth = getAuth();
 
+  const defaultImageUrl = 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=1024x1024&w=is&k=20&c=Bs1RdueQnaAcO888WBIQsC6NvA7aVTzeRVzSd8sJfUg=';
+
   useEffect(() => {
     const fetchListing = async () => {
       const docRef = doc(db, "listings", params.listingId);
@@ -45,27 +47,31 @@ function Listing() {
 
   return (
     <main>
-      <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-        navigation
-        style={{ height: "300px" }}
-      >
-        {listing.imgUrls.map((url, index) => {
-          return (
-            <SwiperSlide key={index}>
-              <div
-                className="swiperSlideDiv"
-                style={{
-                  background: `url(${listing.imgUrls[index]}) center no-repeat`,
-                  backgroundSize: "cover",
-                }}
-              ></div>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      {listing && listing.imgUrls && (
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          navigation
+          style={{ height: "300px" }}
+        >
+          {listing.imgUrls.map((url, index) => {
+            // Check if the image URL is valid or not
+            const imageUrl = url || defaultImageUrl;
+            return (
+              <SwiperSlide key={index}>
+                <div
+                  className="swiperSlideDiv"
+                  style={{
+                    background: `url(${imageUrl}) center no-repeat`,
+                    backgroundSize: "cover",
+                  }}
+                ></div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      )}
 
       <div
         className="shareIconDiv"
@@ -108,8 +114,21 @@ function Listing() {
         <ul className="listingDetailsList">
           <li>Brand: {listing.brand}</li>
           <li>Model: {listing.model}</li>
-          <li>{listing.isNew ? `New` : `Used`}</li>
           <li>Color: {listing.color}</li>
+
+          {/* Display the 'isNew' attribute */}
+          <li>Condition: {listing.isNew ? 'New' : 'Used'}</li>
+
+          {/* Display the 'regularPrice' attribute */}
+          <li>Regular Price: ${listing.regularPrice}</li>
+
+          {/* Display the 'discountedPrice' attribute if there is an offer */}
+          {listing.offer && (
+            <li>Discounted Price: ${listing.discountedPrice}</li>
+          )}
+
+          {/* Display the 'timestamp' attribute */}
+          <li>Posted: {listing.timestamp}</li>
         </ul>
 
         <p className="listingLocationTitle">Location</p>
@@ -118,7 +137,7 @@ function Listing() {
           <MapContainer
             style={{ height: "100%", width: "100%" }}
             center={[listing.geolocation.lat, listing.geolocation.lng]}
-            zoom={13}
+            zoom={15}
             scrollWheelZoom={false}
           >
             <TileLayer
