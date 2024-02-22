@@ -8,7 +8,7 @@ function Explore() {
   return (
     <div className="explore">
       <header>
-        <p className="pageHeader">Explore Musician's Marketplace</p>
+        <p className="pageHeader">Explore Musician Marketplace</p>
       </header>
 
       <main>
