@@ -1,208 +1,230 @@
 {
-	"listings": [
-		{
-			"name": "Yamaha Piano",
-			"type": "instrument",
-			"instrumentType": "string",
-			"brand": "Yamaha",
-			"model": "U1",
-			"isNew": false,
-			"color": "Black",
-			"offer": true,
-			"regularPrice": 5000,
-			"discountedPrice": 4500,
-			"location": "220 Yonge St, Toronto, ON M5B 2H1, Canada",
-			"geolocation": {
-				"lat": "43.654438",
-				"lng": "-79.380699"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fyamahapiano.jpg?alt=media&token=2c79a526-9ddc-4cd5-b739-915ca0a760e0"],
-			"timestamp": "10:37:21"
-		},
-		{
-			"name": "Gibson Guitar",
-			"type": "instrument",
-			"instrumentType": "string",
-			"brand": "Gibson",
-			"model": "Les Paul",
-			"isNew": true,
-			"color": "Sunburst",
-			"offer": false,
-			"regularPrice": 650000,
-			"location": "317 Dundas St W, Toronto, ON M5T 1G4, Canada",
-			"geolocation": {
-				"lat": "43.654024",
-				"lng": "-79.392516"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fgibsonguitar.jpg?alt=media&token=5d4f3fbb-c6e9-4e3e-81fa-df7b07c76280"],
-			"timestamp": "11:42:35"
-		},
-		{
-			"name": "Fender Stratocaster",
-			"type": "instrument",
-			"instrumentType": "string",
-			"brand": "Fender",
-			"model": "Stratocaster",
-			"isNew": true,
-			"color": "Red",
-			"offer": true,
-			"regularPrice": 700000,
-			"discountedPrice": 690000,
-			"location": "55 Mill St, Toronto, ON M5A 3C4, Canada",
-			"geolocation": {
-				"lat": "43.650802",
-				"lng": "-79.359680"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Ffenderguitar.jpg?alt=media&token=bb293338-7914-4cd1-b103-70a972b38453"],
-			"timestamp": "13:15:48"
-		},
-		{
-			"name": "Roland Keyboard",
-			"type": "instrument",
-			"instrumentType": "keyboard",
-			"brand": "Roland",
-			"model": "Juno",
-			"isNew": false,
-			"color": "White",
-			"offer": true,
-			"regularPrice": 720000,
-			"discountedPrice": 670000,
-			"location": "630 Queen St W, Toronto, ON M6J 1E4, Canada",
-			"geolocation": {
-				"lat": "43.647097",
-				"lng": "-79.409835"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Frolandkeyboard.jpg?alt=media&token=3c9686f0-a039-49e6-b1cc-39b4c7a7ae32"],
-			"timestamp": "09:08:55"
-		},
-		{
-			"name": "Pearl Drum Set",
-			"type": "instrument",
-			"instrumentType": "percussion",
-			"brand": "Pearl",
-			"model": "Export Series",
-			"isNew": true,
-			"color": "Black",
-			"offer": false,
-			"regularPrice": 630000,
-			"location": "1 Blue Jays Way, Toronto, ON M5V 1J1, Canada",
-			"geolocation": {
-				"lat": "43.641438",
-				"lng": "-79.389353"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fpearldrumset.jpg?alt=media&token=9c94b540-c55e-4738-b1f3-1a59dd747636"],
-			"timestamp": "16:23:14"
-		},
-		{
-			"name": "Selmer Saxophone",
-			"type": "instrument",
-			"instrumentType": "wind",
-			"brand": "Selmer",
-			"model": "Mark VI",
-			"isNew": false,
-			"color": "Gold",
-			"offer": true,
-			"regularPrice": 2300,
-			"discountedPrice": 1900,
-			"location": "100 Queen St W, Toronto, ON M5H 2N1, Canada",
-			"geolocation": {
-				"lat": "43.653908",
-				"lng": "-79.384293"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fselmersaxophone.jpg?alt=media&token=e7ad5f82-2b64-4a98-81db-3a4d478c3cad"],
-			"timestamp": "14:54:03"
-		},
-		{
-			"name": "Shure SM7B Microphone",
-			"type": "equipment",
-			"equipmentType": "microphone",
-			"brand": "Shure",
-			"model": "SM7B",
-			"isNew": true,
-			"color": "Black",
-			"offer": false,
-			"regularPrice": 400,
-			"location": "3401 Dufferin St, Toronto, ON M6A 2T9, Canada",
-			"geolocation": {
-				"lat": "43.725899",
-				"lng": "-79.452159"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fshuremicrophone.jpg?alt=media&token=41ea6755-531b-4dfb-96aa-3e091dfefc9d"],
-			"timestamp": "12:30:29"
-		},
-		{
-			"name": "Focusrite Scarlett 2i2",
-			"type": "equipment",
-			"equipmentType": "audio interface",
-			"brand": "Focusrite",
-			"model": "Scarlett 2i2",
-			"isNew": true,
-			"color": "Red",
-			"offer": true,
-			"regularPrice": 160,
-			"discountedPrice": 145,
-			"location": "290 Bremner Blvd, Toronto, ON M5V 3L9, Canada",
-			"geolocation": {
-				"lat": "43.642566",
-				"lng": "-79.387057"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Ffocusritescarlett.jpg?alt=media&token=343bac97-78ff-4d01-b470-9e4668d9c13f"],
-			"timestamp": "08:45:17"
-		},
-		{
-			"name": "Yamaha HS8 Studio Monitor",
-			"type": "equipment",
-			"equipmentType": "speaker",
-			"brand": "Yamaha",
-			"model": "HS8",
-			"isNew": true,
-			"color": "White",
-			"offer": false,
-			"regularPrice": 350,
-			"location": "25 The West Mall, Toronto, ON M9C 1B8, Canada",
-			"geolocation": {
-				"lat": "43.611610",
-				"lng": "-79.557252"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fyamahaspeakers.jpg?alt=media&token=08babbe9-0fbd-4388-be8e-509fba3441f1"],
-			"timestamp": "17:05:42"
-		},
-		{
-			"name": "KRK Rokit 5 G4",
-			"type": "equipment",
-			"equipmentType": "speaker",
-			"brand": "KRK",
-			"model": "Rokit 5 G4",
-			"isNew": false,
-			"color": "Black",
-			"offer": true,
-			"regularPrice": 180,
-			"discountedPrice": 150,
-			"location": "10 Dundas St E, Toronto, ON M5B 2G9, Canada",
-			"geolocation": {
-				"lat": "43.656094",
-				"lng": "-79.380492"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fkrkspeaker.jpg?alt=media&token=5db76dde-869f-452d-afca-6a5befb58fc7"],
-			"timestamp": "15:19:36"
-		},
-		{
-			"name": "Audio-Technica ATH-M70x",
-			"type": "equipment",
-			"equipmentType": "headphones",
-			"brand": "Audio-Technica",
-			"model": "ATH-M50x",
-			"isNew": true,
-			"color": "Black",
-			"offer": false,
-			"regularPrice": 149,
-			"location": "77 Rhythm Rd, Atlanta, GA 30303",
-			"geolocation": {
-				"lat": "33.749099",
-				"lng": "-84.390185"
-			},
-			"imageUrls": ["https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Faudiotechnicaheadphones.jpg?alt=media&token=41783db3-8cac-4370-8574-f9df915bd03d"],
-			"timestamp": "12:30:29"
-		}
-	]
+  "listings": [
+    {
+      "name": "Yamaha Piano",
+      "type": "instrument",
+      "instrumentType": "string",
+      "brand": "Yamaha",
+      "model": "U1",
+      "isNew": false,
+      "color": "Black",
+      "offer": true,
+      "regularPrice": 5000,
+      "discountedPrice": 4500,
+      "location": "220 Yonge St, Toronto, ON M5B 2H1, Canada",
+      "geolocation": {
+        "lat": "43.654438",
+        "lng": "-79.380699"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fyamahapiano.jpg?alt=media&token=2c79a526-9ddc-4cd5-b739-915ca0a760e0"
+      ],
+      "timestamp": "10:37:21"
+    },
+    {
+      "name": "Gibson Guitar",
+      "type": "instrument",
+      "instrumentType": "string",
+      "brand": "Gibson",
+      "model": "Les Paul",
+      "isNew": true,
+      "color": "Sunburst",
+      "offer": false,
+      "regularPrice": 650000,
+      "location": "317 Dundas St W, Toronto, ON M5T 1G4, Canada",
+      "geolocation": {
+        "lat": "43.654024",
+        "lng": "-79.392516"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fgibsonguitar.jpg?alt=media&token=5d4f3fbb-c6e9-4e3e-81fa-df7b07c76280"
+      ],
+      "timestamp": "11:42:35"
+    },
+    {
+      "name": "Fender Stratocaster",
+      "type": "instrument",
+      "instrumentType": "string",
+      "brand": "Fender",
+      "model": "Stratocaster",
+      "isNew": true,
+      "color": "Red",
+      "offer": true,
+      "regularPrice": 700000,
+      "discountedPrice": 690000,
+      "location": "55 Mill St, Toronto, ON M5A 3C4, Canada",
+      "geolocation": {
+        "lat": "43.650802",
+        "lng": "-79.359680"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Ffenderguitar.jpg?alt=media&token=bb293338-7914-4cd1-b103-70a972b38453"
+      ],
+      "timestamp": "13:15:48"
+    },
+    {
+      "name": "Roland Keyboard",
+      "type": "instrument",
+      "instrumentType": "keyboard",
+      "brand": "Roland",
+      "model": "Juno",
+      "isNew": false,
+      "color": "White",
+      "offer": true,
+      "regularPrice": 720000,
+      "discountedPrice": 670000,
+      "location": "630 Queen St W, Toronto, ON M6J 1E4, Canada",
+      "geolocation": {
+        "lat": "43.647097",
+        "lng": "-79.409835"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Frolandkeyboard.jpg?alt=media&token=3c9686f0-a039-49e6-b1cc-39b4c7a7ae32"
+      ],
+      "timestamp": "09:08:55"
+    },
+    {
+      "name": "Pearl Drum Set",
+      "type": "instrument",
+      "instrumentType": "percussion",
+      "brand": "Pearl",
+      "model": "Export Series",
+      "isNew": true,
+      "color": "Black",
+      "offer": false,
+      "regularPrice": 630000,
+      "location": "1 Blue Jays Way, Toronto, ON M5V 1J1, Canada",
+      "geolocation": {
+        "lat": "43.641438",
+        "lng": "-79.389353"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fpearldrumset.jpg?alt=media&token=9c94b540-c55e-4738-b1f3-1a59dd747636"
+      ],
+      "timestamp": "16:23:14"
+    },
+    {
+      "name": "Selmer Saxophone",
+      "type": "instrument",
+      "instrumentType": "wind",
+      "brand": "Selmer",
+      "model": "Mark VI",
+      "isNew": false,
+      "color": "Gold",
+      "offer": true,
+      "regularPrice": 2300,
+      "discountedPrice": 1900,
+      "location": "100 Queen St W, Toronto, ON M5H 2N1, Canada",
+      "geolocation": {
+        "lat": "43.653908",
+        "lng": "-79.384293"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fselmersaxophone.jpg?alt=media&token=e7ad5f82-2b64-4a98-81db-3a4d478c3cad"
+      ],
+      "timestamp": "14:54:03"
+    },
+    {
+      "name": "Shure SM7B Microphone",
+      "type": "equipment",
+      "equipmentType": "microphone",
+      "brand": "Shure",
+      "model": "SM7B",
+      "isNew": true,
+      "color": "Black",
+      "offer": false,
+      "regularPrice": 400,
+      "location": "3401 Dufferin St, Toronto, ON M6A 2T9, Canada",
+      "geolocation": {
+        "lat": "43.725899",
+        "lng": "-79.452159"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fshuremicrophone.jpg?alt=media&token=41ea6755-531b-4dfb-96aa-3e091dfefc9d"
+      ],
+      "timestamp": "12:30:29"
+    },
+    {
+      "name": "Focusrite Scarlett 2i2",
+      "type": "equipment",
+      "equipmentType": "audio interface",
+      "brand": "Focusrite",
+      "model": "Scarlett 2i2",
+      "isNew": true,
+      "color": "Red",
+      "offer": true,
+      "regularPrice": 160,
+      "discountedPrice": 145,
+      "location": "290 Bremner Blvd, Toronto, ON M5V 3L9, Canada",
+      "geolocation": {
+        "lat": "43.642566",
+        "lng": "-79.387057"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Ffocusritescarlett.jpg?alt=media&token=343bac97-78ff-4d01-b470-9e4668d9c13f"
+      ],
+      "timestamp": "08:45:17"
+    },
+    {
+      "name": "Yamaha HS8 Studio Monitor",
+      "type": "equipment",
+      "equipmentType": "speaker",
+      "brand": "Yamaha",
+      "model": "HS8",
+      "isNew": true,
+      "color": "White",
+      "offer": false,
+      "regularPrice": 350,
+      "location": "25 The West Mall, Toronto, ON M9C 1B8, Canada",
+      "geolocation": {
+        "lat": "43.611610",
+        "lng": "-79.557252"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fyamahaspeakers.jpg?alt=media&token=08babbe9-0fbd-4388-be8e-509fba3441f1"
+      ],
+      "timestamp": "17:05:42"
+    },
+    {
+      "name": "KRK Rokit 5 G4",
+      "type": "equipment",
+      "equipmentType": "speaker",
+      "brand": "KRK",
+      "model": "Rokit 5 G4",
+      "isNew": false,
+      "color": "Black",
+      "offer": true,
+      "regularPrice": 180,
+      "discountedPrice": 150,
+      "location": "10 Dundas St E, Toronto, ON M5B 2G9, Canada",
+      "geolocation": {
+        "lat": "43.656094",
+        "lng": "-79.380492"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Fkrkspeaker.jpg?alt=media&token=5db76dde-869f-452d-afca-6a5befb58fc7"
+      ],
+      "timestamp": "15:19:36"
+    },
+    {
+      "name": "Audio-Technica ATH-M70x",
+      "type": "equipment",
+      "equipmentType": "headphones",
+      "brand": "Audio-Technica",
+      "model": "ATH-M50x",
+      "isNew": true,
+      "color": "Black",
+      "offer": false,
+      "regularPrice": 149,
+      "location": "77 Rhythm Rd, Atlanta, GA 30303",
+      "geolocation": {
+        "lat": "33.749099",
+        "lng": "-84.390185"
+      },
+      "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-cc82d.appspot.com/o/musicianmarketplace%2Faudiotechnicaheadphones.jpg?alt=media&token=41783db3-8cac-4370-8574-f9df915bd03d"
+      ],
+      "timestamp": "12:30:29"
+    }
+  ]
 }

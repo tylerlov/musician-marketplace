@@ -15,46 +15,45 @@
 - Collection: Listing
 - Query Scope: Collection
 
-| Field      |  |
-| ----------- | ----------- |
-| type      | Ascending       |
-| timestamp   | Descending        |
-
+| Field     |            |
+| --------- | ---------- |
+| type      | Ascending  |
+| timestamp | Descending |
 
 #### Second
 
 - Collection: Listing
 - Query Scope: Collection
 
-| Field      |  |
-| ----------- | ----------- |
-| userRef      | Ascending       |
-| timestamp   | Descending        |
+| Field     |            |
+| --------- | ---------- |
+| userRef   | Ascending  |
+| timestamp | Descending |
 
 #### Third
 
 - Collection: Listing
 - Query Scope: Collection
 
-| Field      |  |
-| ----------- | ----------- |
-| offer      | Ascending       |
-| timestamp   | Descending        |
+| Field     |            |
+| --------- | ---------- |
+| offer     | Ascending  |
+| timestamp | Descending |
 
 10. Create dummy listing with sample data
 
-| Field      | Value |
-| ----------- | ----------- |
-| name     |     Beautiful Stratford Condo   |
-| type   | rent        |
-| bedrooms   | 2        |
-| userRef   | ID OF A USER        |
-| bathrooms   | 2        |
-| parking   | true        |
-| furnished   | false        |
-| offer   | true        |
-| regularPrice   | 2500        |
-| discountedPrice   | 2000        |
-| location   | 8601 West Peachtree St Stratford, CT 06614        |
-| geolocation   | **lat**: 41.205590  **lng**: -73.150530         |
-| imageUrls   | ['https://images.unsplash.com/photo-1586105251261-72a756497a11?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1258&q=80', 'https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80']        |
+| Field           | Value                                                                                                                                                                                                                                                                                                                             |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name            | Beautiful Stratford Condo                                                                                                                                                                                                                                                                                                         |
+| type            | rent                                                                                                                                                                                                                                                                                                                              |
+| bedrooms        | 2                                                                                                                                                                                                                                                                                                                                 |
+| userRef         | ID OF A USER                                                                                                                                                                                                                                                                                                                      |
+| bathrooms       | 2                                                                                                                                                                                                                                                                                                                                 |
+| parking         | true                                                                                                                                                                                                                                                                                                                              |
+| furnished       | false                                                                                                                                                                                                                                                                                                                             |
+| offer           | true                                                                                                                                                                                                                                                                                                                              |
+| regularPrice    | 2500                                                                                                                                                                                                                                                                                                                              |
+| discountedPrice | 2000                                                                                                                                                                                                                                                                                                                              |
+| location        | 8601 West Peachtree St Stratford, CT 06614                                                                                                                                                                                                                                                                                        |
+| geolocation     | **lat**: 41.205590 **lng**: -73.150530                                                                                                                                                                                                                                                                                            |
+| imageUrls       | ['https://images.unsplash.com/photo-1586105251261-72a756497a11?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1258&q=80', 'https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80'] |

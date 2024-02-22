@@ -29,7 +29,8 @@ function Slider() {
       let fetchedListings = []; // Corrected variable name
 
       querySnap.forEach((doc) => {
-        fetchedListings.push({ // Push to the new array
+        fetchedListings.push({
+          // Push to the new array
           id: doc.id,
           data: doc.data(),
         });
@@ -57,29 +58,32 @@ function Slider() {
           navigation
           style={{ height: "300px" }}
         >
-         {listings.map(({ data, id }) => {
-           const imageUrl = data.imageUrls && data.imageUrls[0] ? data.imageUrls[0] : 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=1024x1024&w=is&k=20&c=Bs1RdueQnaAcO888WBIQsC6NvA7aVTzeRVzSd8sJfUg=';
-           return (
-             <SwiperSlide
-               key={id}
-               onClick={() => navigate(`/category/${data.type}/${id}`)}
-             >
-               <div
-                 style={{
-                   background: `url(${imageUrl}) center no-repeat`,
-                   backgroundSize: "cover",
-                 }}
-                 className="swiperSlideDiv"
-               >
-                 <p className="swiperSlideText">{data.name}</p>
-                 <p className="swiperSlidePrice">
-                   ${data.discountedPrice ?? data.regularPrice}{" "}
-                   {data.type === "rent" && "/ month"}
-                 </p>
-               </div>
-             </SwiperSlide>
-           );
-         })}
+          {listings.map(({ data, id }) => {
+            const imageUrl =
+              data.imageUrls && data.imageUrls[0]
+                ? data.imageUrls[0]
+                : "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=1024x1024&w=is&k=20&c=Bs1RdueQnaAcO888WBIQsC6NvA7aVTzeRVzSd8sJfUg=";
+            return (
+              <SwiperSlide
+                key={id}
+                onClick={() => navigate(`/category/${data.type}/${id}`)}
+              >
+                <div
+                  style={{
+                    background: `url(${imageUrl}) center no-repeat`,
+                    backgroundSize: "cover",
+                  }}
+                  className="swiperSlideDiv"
+                >
+                  <p className="swiperSlideText">{data.name}</p>
+                  <p className="swiperSlidePrice">
+                    ${data.discountedPrice ?? data.regularPrice}{" "}
+                    {data.type === "rent" && "/ month"}
+                  </p>
+                </div>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </>
     )
@@ -87,4 +91,3 @@ function Slider() {
 }
 
 export default Slider;
-

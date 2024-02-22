@@ -25,7 +25,8 @@ function Listing() {
   const params = useParams();
   const auth = getAuth();
 
-  const defaultImageUrl = 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=1024x1024&w=is&k=20&c=Bs1RdueQnaAcO888WBIQsC6NvA7aVTzeRVzSd8sJfUg=';
+  const defaultImageUrl =
+    "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=1024x1024&w=is&k=20&c=Bs1RdueQnaAcO888WBIQsC6NvA7aVTzeRVzSd8sJfUg=";
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -103,9 +104,7 @@ function Listing() {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </p>
         <p className="listingLocation">{listing.location}</p>
-        <p className="listingType">
-          Instrument Type: {listing.instrumentType}
-        </p>
+        <p className="listingType">Instrument Type: {listing.instrumentType}</p>
         {listing.offer && (
           <p className="discountPrice">
             ${listing.regularPrice - listing.discountedPrice} discount
@@ -117,7 +116,7 @@ function Listing() {
           <li>Color: {listing.color}</li>
 
           {/* Display the 'isNew' attribute */}
-          <li>Condition: {listing.isNew ? 'New' : 'Used'}</li>
+          <li>Condition: {listing.isNew ? "New" : "Used"}</li>
 
           {/* Display the 'regularPrice' attribute */}
           <li>Regular Price: ${listing.regularPrice}</li>

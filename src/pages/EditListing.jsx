@@ -1,19 +1,24 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import { doc, updateDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast }    from "react-toastify";
+import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 
 function EditListing() {
   const [loading, setLoading] = useState(false);
   const [listing, setListing] = useState(null);
 
-    // eslint-disable-next-line
+  // eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [formData, setFormData] = useState({
     instrumentType: "",
@@ -48,119 +53,118 @@ function EditListing() {
   } = formData;
 
   const onSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    setLoading(true)
+    setLoading(true);
 
     if (discountedPrice >= regularPrice) {
-      setLoading(false)
-      toast.error('Discounted price needs to be less than regular price')
-      return
+      setLoading(false);
+      toast.error("Discounted price needs to be less than regular price");
+      return;
     }
 
     if (images.length > 6) {
-      setLoading(false)
-      toast.error('Max 6 images')
-      return
+      setLoading(false);
+      toast.error("Max 6 images");
+      return;
     }
 
-    let geolocation = {}
-    let location
+    let geolocation = {};
+    let location;
 
     if (geolocationEnabled) {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
-      )
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`,
+      );
 
-      const data = await response.json()
+      const data = await response.json();
 
-      geolocation.lat = data.results[0]?.geometry.location.lat ?? 0
-      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0
+      geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
+      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
 
       location =
-        data.status === 'ZERO_RESULTS'
+        data.status === "ZERO_RESULTS"
           ? undefined
-          : data.results[0]?.formatted_address
+          : data.results[0]?.formatted_address;
 
-      if (location === undefined || location.includes('undefined')) {
-        setLoading(false)
-        toast.error('Please enter a correct address')
-        return
+      if (location === undefined || location.includes("undefined")) {
+        setLoading(false);
+        toast.error("Please enter a correct address");
+        return;
       }
     } else {
-      geolocation.lat = latitude
-      geolocation.lng = longitude
+      geolocation.lat = latitude;
+      geolocation.lng = longitude;
     }
 
     // Store image in firebase
     const storeImage = async (image) => {
       return new Promise((resolve, reject) => {
-        const storage = getStorage()
-        const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`
+        const storage = getStorage();
+        const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
 
-        const storageRef = ref(storage, 'images/' + fileName)
+        const storageRef = ref(storage, "images/" + fileName);
 
-        const uploadTask = uploadBytesResumable(storageRef, image)
+        const uploadTask = uploadBytesResumable(storageRef, image);
 
         uploadTask.on(
-          'state_changed',
+          "state_changed",
           (snapshot) => {
             const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            console.log('Upload is ' + progress + '% done')
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done");
             switch (snapshot.state) {
-              case 'paused':
-                console.log('Upload is paused')
-                break
-              case 'running':
-                console.log('Upload is running')
-                break
+              case "paused":
+                console.log("Upload is paused");
+                break;
+              case "running":
+                console.log("Upload is running");
+                break;
               default:
-                break
+                break;
             }
           },
           (error) => {
-            reject(error)
+            reject(error);
           },
           () => {
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              resolve(downloadURL)
-            })
-          }
-        )
-      })
-    }
+              resolve(downloadURL);
+            });
+          },
+        );
+      });
+    };
     const imgUrls = await Promise.all(
-        [...images].map((image) => storeImage(image))
-      ).catch(() => {
-        setLoading(false)
-        toast.error('Images not uploaded')
-        return
-      })
-      
-      const formDataCopy = {
-        ...formData,
-        imgUrls,
-        geolocation,
-        timestamp: serverTimestamp(),
-      }
+      [...images].map((image) => storeImage(image)),
+    ).catch(() => {
+      setLoading(false);
+      toast.error("Images not uploaded");
+      return;
+    });
 
-      formDataCopy.location = location
-      delete formDataCopy.images
-      delete formDataCopy.location
-      !formDataCopy.offer && delete formDataCopy.discountedPrice
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+      geolocation,
+      timestamp: serverTimestamp(),
+    };
 
-      //update listing
-      const docRef = doc(db, 'listings', params.listingId)
-        await updateDoc(docRef, formDataCopy)
+    formDataCopy.location = location;
+    delete formDataCopy.images;
+    delete formDataCopy.location;
+    !formDataCopy.offer && delete formDataCopy.discountedPrice;
 
-      setLoading(false)
-      toast.success('Listing saved')
-      navigate(`/category/${formDataCopy.instrumentType}/${docRef.id}`)
-    }
-  
+    //update listing
+    const docRef = doc(db, "listings", params.listingId);
+    await updateDoc(docRef, formDataCopy);
+
+    setLoading(false);
+    toast.success("Listing saved");
+    navigate(`/category/${formDataCopy.instrumentType}/${docRef.id}`);
+  };
 
   const onMutate = (e) => {
     let boolean = null;
@@ -191,32 +195,32 @@ function EditListing() {
   const navigate = useNavigate();
   const params = useParams();
   const isMounted = useRef(true);
-  
-// redirect if listing is not users
-useEffect(() => {
-    if(listing && listing.userRef !== auth.currentUser.uid) {
-        toast.error('You are not authorized to edit this listing')
-        navigate('/')
-    }
-},[])
 
-// fetch listing to edit
+  // redirect if listing is not users
   useEffect(() => {
-    setLoading(true)
-    const fetchListing = async () => {
-        const docRef = await doc(db,'listings', params.listingId)
-        const docSnap = await getDoc(docRef)
-        if(docSnap.exists()){
-            setListing(docSnap.data())
-            setFormData({...docSnap.data(), location: docSnap.data().location})
-            setLoading(false)
-        } else {
-            navigate('/')
-            toast.error('Listing not found')
-        }
+    if (listing && listing.userRef !== auth.currentUser.uid) {
+      toast.error("You are not authorized to edit this listing");
+      navigate("/");
     }
-    fetchListing()
-  }, [params.listingId, navigate])
+  }, []);
+
+  // fetch listing to edit
+  useEffect(() => {
+    setLoading(true);
+    const fetchListing = async () => {
+      const docRef = await doc(db, "listings", params.listingId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setListing(docSnap.data());
+        setFormData({ ...docSnap.data(), location: docSnap.data().location });
+        setLoading(false);
+      } else {
+        navigate("/");
+        toast.error("Listing not found");
+      }
+    };
+    fetchListing();
+  }, [params.listingId, navigate]);
 
   //sets userRef to logged in user
   useEffect(() => {
@@ -252,7 +256,9 @@ useEffect(() => {
           <div className="formButtons">
             <button
               type="button"
-              className={instrumentType === "string" ? "formButtonActive" : "formButton"}
+              className={
+                instrumentType === "string" ? "formButtonActive" : "formButton"
+              }
               id="instrumentType"
               value="string"
               onClick={onMutate}
@@ -261,7 +267,9 @@ useEffect(() => {
             </button>
             <button
               type="button"
-              className={instrumentType === "wind" ? "formButtonActive" : "formButton"}
+              className={
+                instrumentType === "wind" ? "formButtonActive" : "formButton"
+              }
               id="instrumentType"
               value="wind"
               onClick={onMutate}
@@ -270,7 +278,11 @@ useEffect(() => {
             </button>
             <button
               type="button"
-              className={instrumentType === "percussion" ? "formButtonActive" : "formButton"}
+              className={
+                instrumentType === "percussion"
+                  ? "formButtonActive"
+                  : "formButton"
+              }
               id="instrumentType"
               value="percussion"
               onClick={onMutate}

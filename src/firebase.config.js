@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore}  from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,7 +14,7 @@ const firebaseConfig = {
   storageBucket: "house-marketplace-app-cc82d.appspot.com",
   messagingSenderId: "120711653936",
   appId: "1:120711653936:web:a0d1d513cad05df4bd9bf5",
-  measurementId: "G-C5D71WZQ8P"
+  measurementId: "G-C5D71WZQ8P",
 };
 
 // Initialize Firebase
