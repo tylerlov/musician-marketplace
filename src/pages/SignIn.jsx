@@ -80,6 +80,9 @@ function SignIn() {
             {" "}
             Forgot Password{" "}
           </Link>
+          <Link to="/signup" className="registerLink">
+          Sign Up Instead
+        </Link>
 
           <div className="signInBar">
             <p className="signInText">Sign In</p>
@@ -90,9 +93,6 @@ function SignIn() {
         </form>
 
         <OAuth />
-        <Link to="/signup" className="registerLink">
-          Sign Up Instead
-        </Link>
       </div>
     </>
   );
