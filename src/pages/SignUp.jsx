@@ -55,7 +55,17 @@ function SignUp() {
 
       navigate("/");
     } catch (error) {
-      toast.error("Issue with registration credentials");
+      let errorMessage = "Issue with registration credentials";
+      if (error.code === "auth/email-already-in-use") {
+        errorMessage = "Email is already in use.";
+      } else if (error.code === "auth/weak-password") {
+        errorMessage = "Password should be at least 6 characters.";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "Please enter a valid email address.";
+      } else {
+        errorMessage = error.message; // Fallback to Firebase's error message.
+      }
+      toast.error(errorMessage);
     }
   };
 
