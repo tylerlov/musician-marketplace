@@ -22,7 +22,7 @@ function OAuth() {
       const docSnapshot = await getDoc(docRef);
 
       //If user doesnt exist, create user
-      if (!docSnapshot.exists) {
+      if (!docSnapshot.exists()) {
         await setDoc(doc(db, "users", user.uid), {
           name: user.displayName,
           email: user.email,
@@ -31,7 +31,8 @@ function OAuth() {
       }
       navigate("/");
     } catch (error) {
-      toast.error("Error signing in with Google");
+      console.error("Google sign-in error:", error);
+      toast.error(`Error signing in with Google: ${error.message}`);
     }
   };
 
